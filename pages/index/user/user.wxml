@@ -1,0 +1,4 @@
+<!--pages/tab_pages/setting/setting.wxml-->
+<van-cell is-link title="帮助与反馈" link-type="navigateTo" url="" size="large"/>
+<van-cell is-link title="设置" link-type="navigateTo" url="" size="large"/>
+<van-cell is-link title="关于" link-type="navigateTo" url="" size="large"/>

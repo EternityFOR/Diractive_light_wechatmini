@@ -1,0 +1,14 @@
+<!--pages/tab_pages/setting/setting.wxml-->
+
+<view class = "flex flex-jcc flex-ac flex-v" style="width:100%; height:80%">
+<van-circle
+  type="2d"
+  value="{{ value }}"
+  layer-color="#eeeeee"
+  color= "{{gradientColor}}"
+  stroke-width = "10"
+  size = "150"
+  text="{{state}}"
+/>
+</view>
+

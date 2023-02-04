@@ -1,0 +1,19 @@
+<view class="container">
+  <view class = "info-block">
+    <text class = "hint1">请打开蓝牙搜索设备</text>
+    <text class = "hint2">(安卓需打开位置功能)</text>
+  </view>
+  <scroll-view scroll-y style="width:690rpx;height:{{list_height}}rpx">
+    <block wx:for="{{devicesList}}" wx:key="deviceId">
+      <view class="list-item" id="{{item.deviceId}}" bindtap="Connect">
+        <view style="display:flex;flex-direction:column;width:80%">
+          <text style="font-size:medium;word-break:break-all">设备名称: {{item.name}}</text>
+          <text style="font-size:x-small;color:gray;word-break:break-all">设备ID: {{item.deviceId}}</text>
+          <text style="font-size:x-small;color:gray;word-break:break-all">信号强度RSSI: {{item.RSSI}}</text>
+        </view>
+        <image style="width:36px;height:36px" mode="aspectFit" src="/images/bluetooth.png"></image>
+      </view>
+    </block>
+  </scroll-view>
+  <van-button class="button" size= "large" round type="info" color="linear-gradient(to right, #4bb0ff, #6149f6)" loading="{{searching}}" bindtap="Search" loading-text= "搜索中...">搜索设备</van-button>
+</view>

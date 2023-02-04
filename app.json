@@ -1,0 +1,40 @@
+{
+  "pages": [
+    "pages/index/home/home",
+    "pages/index/data/data",
+    "pages/index/user/user",
+    "pages/operate/search/search",
+    "pages/operate/device/device",
+    "pages/blueDevices/blueDevices",
+    "pages/blueWifi/blueWifi",
+    "pages/blueConnect/blueConnect"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#136dc9",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "灯"
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#7A7E83",
+    "selectedColor": "#3cc51f",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/home/home",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/index/data/data",
+        "text": "监控"
+      },
+      {
+        "pagePath": "pages/index/user/user",
+        "text": "我的"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

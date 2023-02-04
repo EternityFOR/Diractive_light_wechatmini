@@ -1,0 +1,13 @@
+<!--index.wxml-->
+<view class="content-wrapper">
+    <view class="btn-info">
+      <view bindtap="bindViewBlue" class="flex-1 flex flex-v flex-jcc flex-ac">
+        <text class="btn-icon iconfont icon-peiwang"></text>
+        <text class="name" style="position: relative; left: 10rpx;">蓝牙配网</text>
+      </view>
+      <view bindtap="bindViewWifi" class="flex-1 flex flex-v flex-jcc flex-ac">
+        <text class="btn-icon iconfont icon-kongzhi"></text>
+        <text class="name">灯光控制</text>
+      </view>
+    </view>
+</view>
