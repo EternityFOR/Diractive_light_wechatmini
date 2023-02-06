@@ -28,12 +28,12 @@ App({
     return str
   }, 
   onLaunch: function (buffer) {
-    // const mqtt_connect = require('./utils/mqtt_connect.js');
-    // this.globalData.SystemInfo = wx.getSystemInfoSync();
-    // this.data.client = mqtt_connect.connect();
-    // this.data.client.on('connect', function (connack) {
-    //   console.log("成功连接mqtt服务器")
-    // });
-    // mqtt_connect.radar_get();
+    const mqtt_connect = require('./utils/mqtt_connect.js');
+    this.globalData.SystemInfo = wx.getSystemInfoSync();
+    this.data.client = mqtt_connect.connect();
+    this.data.client.on('connect', function (connack) {
+      console.log("成功连接mqtt服务器")
+    });
+    mqtt_connect.radar_get();
   }
 })

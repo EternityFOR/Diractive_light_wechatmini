@@ -89,7 +89,6 @@ let drawRing = function(ctx, width, height) {
 
 let drawSlider = function(ctx, width, height, angle) {
   var radius = width / 2;
-
   ctx.save();
   ctx.clearRect(0, 0, width, height);
   ctx.translate(width / 2, height / 2);

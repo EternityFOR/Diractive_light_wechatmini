@@ -152,66 +152,64 @@ Page({
       var recieveData = app.buf2hex(res.value);
     })
     _this = this
-    let isInit = true;
-    _this.createSelectorQuery()
-      .select('#colorPicker') // 在 WXML 中填入的 id
-      .fields({
-        node: true,
-        size: true,
-      })
-      .exec((res) => {
-        // Canvas 对象
-        const canvas = res[0].node
-        // Canvas 画布的实际绘制宽高  
-        const renderWidth = res[0].width
-        const renderHeight = res[0].height
-        // Canvas 绘制上下文
-        colorPickerCtx = canvas.getContext('2d');
-
-        // 初始化画布大小
-        const dpr = wx.getSystemInfoSync().pixelRatio
-        canvas.width = renderWidth * dpr
-        canvas.height = renderHeight * dpr
-        colorPickerCtx.scale(dpr, dpr)
-
-        _this.setData({
-          valueWidthOrHerght: renderWidth,
+      _this.createSelectorQuery()
+        .select('#colorPicker') // 在 WXML 中填入的 id
+        .fields({
+          node: true,
+          size: true,
         })
-        if (isInit) {
-          colorPickerCtx.fillStyle = "#ffffff";
-          colorPickerCtx.fillRect(0, 0, renderWidth, renderHeight);
-          util.drawRing(colorPickerCtx, renderWidth, renderHeight);
-          isInit = false;
-        }
-        _this.setData({
-          pickColor: JSON.stringify({
-            red: 255,
-            green: 0,
-            blue: 0
+        .exec((res) => {
+          // Canvas 对象
+          const canvas = res[0].node
+          // Canvas 画布的实际绘制宽高  
+          const renderWidth = res[0].width
+          const renderHeight = res[0].height
+          // Canvas 绘制上下文
+          colorPickerCtx = canvas.getContext('2d');
+
+          // 初始化画布大小
+          const dpr = wx.getSystemInfoSync().pixelRatio
+          canvas.width = renderWidth * dpr
+          canvas.height = renderHeight * dpr
+          colorPickerCtx.scale(dpr, dpr)
+
+          _this.setData({
+            valueWidthOrHerght: renderWidth,
           })
-        })
-    })
-    _this.createSelectorQuery()
-      .select('#colorPickerSlider') // 在 WXML 中填入的 id
-      .fields({
-        node: true,
-        size: true,
+            colorPickerCtx.fillStyle = "#ffffff";
+            colorPickerCtx.fillRect(0, 0, renderWidth, renderHeight);
+            util.drawRing(colorPickerCtx, renderWidth, renderHeight);
+          _this.setData({
+            pickColor: JSON.stringify({
+              red: 255,
+              green: 0,
+              blue: 0
+            })
+          })
       })
-      .exec((res) => {
-        // Canvas 对象
-        const canvas = res[0].node
-        // Canvas 画布的实际绘制宽高  
-        const renderWidth = res[0].width
-        const renderHeight = res[0].height
-        // Canvas 绘制上下文
-        sliderCtx = canvas.getContext('2d');
-        // 初始化画布大小
-        const dpr = wx.getSystemInfoSync().pixelRatio
-        canvas.width = renderWidth * dpr
-        canvas.height = renderHeight * dpr
-        sliderCtx.scale(dpr, dpr)
-        util.drawSlider(sliderCtx, renderWidth, renderHeight, 1.0);
-    })
+
+      _this.createSelectorQuery()
+        .select('#colorPickerSlider') // 在 WXML 中填入的 id
+        .fields({
+          node: true,
+          size: true,
+        })
+        .exec((res) => {
+          // Canvas 对象
+          const canvas = res[0].node
+          // Canvas 画布的实际绘制宽高  
+          const renderWidth = res[0].width
+          const renderHeight = res[0].height
+          // Canvas 绘制上下文
+          sliderCtx = canvas.getContext('2d');
+          // 初始化画布大小
+          const dpr = wx.getSystemInfoSync().pixelRatio
+          canvas.width = renderWidth * dpr
+          canvas.height = renderHeight * dpr
+          sliderCtx.scale(dpr, dpr)
+          util.drawSlider(sliderCtx, renderWidth, renderHeight, 1.0);
+      })
+
   },
   onUnload: function () {
     wx.closeBLEConnection({

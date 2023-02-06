@@ -1,23 +1,57 @@
 import mqtt from './mqtt.min.js';
+import pscreate from './hex_hmac_sha1';
+//三元组
+const devicesecret = {
+  productKey: "i4zinsLongD",
+  deviceName: "wechatmini",
+  deviceSecret: "503e7f8b610ce19d046ebf672e0005c0",
+  regionId: "cn-shanghai"
+}
+let optionsinit = function(devicesecret) {
+  const params = {
+    productKey: devicesecret.productKey,
+    deviceName: devicesecret.deviceName,
+    timestamp: Date.now(),
+    clientId: Math.random().toString(36).substr(2),
+  }
+  //CONNECT参数
+  const options = {
+    reconnectPeriod: 1000, //1000毫秒，两次重新连接之间的间隔
+    connectTimeout: 30 * 1000, //1000毫秒，两次重新连接之间的间隔
+    resubscribe: true, //如果连接断开并重新连接，则会再次自动订阅已订阅的主题（默认true）
+    clean: false,
+    protocolVersion: 4
+  }
+  //1.生成clientId，username，password
+  options.password = passwordcreate(params, devicesecret.deviceSecret);
+  options.clientId = `${params.clientId}|securemode=2,signmethod=hmacsha1,timestamp=${params.timestamp}|`;
+  options.username = `${params.deviceName}&${params.productKey}`;
+
+  return options;
+}
+let passwordcreate = function(params, deviceSecret) {
+  let keys = Object.keys(params).sort();
+  // 按字典序排序
+  keys = keys.sort();
+  const list = [];
+  keys.map((key) => {
+    list.push(`${key}${params[key]}`);
+  });
+  const contentStr = list.join('');
+  return pscreate.hex_hmac_sha1(deviceSecret, contentStr);
+}
+
 //连接的服务器域名，注意格式！！！
 const host = 'wxs://iot-06z00cttbpxocf9.mqtt.iothub.aliyuncs.com/mqtt';
 //MQTT连接的配置
-const options= {
-  protocolVersion: 4, //MQTT连接协议版本
-  clientId: 'i4zinsLongD.wechatmini|securemode=2,signmethod=hmacsha256,timestamp=1673788133944|',
-  clean: false,
-  password: 'fa11be7d048e773ff6ca1de58f18198a7742c93f9cd4f892929254eb0ba25d59',
-  username: 'wechatmini&i4zinsLongD',
-  reconnectPeriod: 1000, //1000毫秒，两次重新连接之间的间隔
-  connectTimeout: 30 * 1000, //1000毫秒，两次重新连接之间的间隔
-  resubscribe: true //如果连接断开并重新连接，则会再次自动订阅已订阅的主题（默认true）
-}
+const options = optionsinit(devicesecret);
 //连接雷达相关topic
 const radar_topic = '/i4zinsLongD/wechatmini/user/wechetmini_radar_get';
 //连接RGB灯相关topic
 const rgb_topic = '/i4zinsLongD/wechatmini/user/wechatmini_light_update';
 //初始化client
 let client;
+
 let connect = function() {
   if(client == null){
     client = mqtt.connect(host, options);

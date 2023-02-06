@@ -3,7 +3,7 @@
   "projectname": "Interactive_light_wechatmini",
   "setting": {
     "compileHotReLoad": false,
-    "urlCheck": false
+    "urlCheck": true
   },
   "libVersion": "2.30.0"
 }
