@@ -40,11 +40,12 @@
     "packNpmRelationList": [],
     "minifyWXSS": true,
     "ignoreDevUnusedFiles": false,
-    "ignoreUploadUnusedFiles": true
+    "ignoreUploadUnusedFiles": true,
+    "condition": false
   },
   "compileType": "miniprogram",
   "libVersion": "2.30.0",
-  "appid": "wxe82c6dc72c399a1d",
+  "appid": "wxe74eebb543892137",
   "projectname": "Moonlight",
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},

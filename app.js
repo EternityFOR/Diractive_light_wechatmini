@@ -34,6 +34,5 @@ App({
     this.data.client.on('connect', function (connack) {
       console.log("成功连接mqtt服务器")
     });
-    mqtt_connect.radar_get();
   }
 })

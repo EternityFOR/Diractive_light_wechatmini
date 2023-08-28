@@ -46,7 +46,7 @@ const host = 'wxs://iot-06z00cttbpxocf9.mqtt.iothub.aliyuncs.com/mqtt';
 //MQTT连接的配置
 const options = optionsinit(devicesecret);
 //连接雷达相关topic
-const radar_topic = '/i4zinsLongD/wechatmini/user/wechetmini_radar_get';
+const radar_topic = '/i4zinsLongD/wechatmini/user/wechatmini_radar_get';
 //连接RGB灯相关topic
 const rgb_topic = '/i4zinsLongD/wechatmini/user/wechatmini_light_update';
 //初始化client
@@ -66,10 +66,11 @@ let connect = function() {
     //   content: " 收到topic:[" + topic + "], payload :[" + payload + "]",
     //   showCancel: false,
     // });
-    var obj = JSON.parse(payload);
-    //获取app.js中的雷达信息全局变量
+    var json_obj = JSON.parse(payload);
+    let target = json_obj['目标状态'];
+    console.log(target); // 输出 1
     const app = getApp();
-    app.globalData.payload = obj;
+    app.globalData.payload = target;
   })
   
   //服务器连接异常的回调
@@ -96,7 +97,7 @@ let light_control = function( message,topic = rgb_topic) {
   client.publish(topic, message);
 };
 
-let radar_get = function(topic = radar_topic) {client.on('connect', function (connack) {
+let radar_data_subscribe = function(topic = radar_topic) {client.on('connect', function (connack) {
   client.subscribe(topic, function (err, granted) { })
   console.log(" 服务器 connect ok")
 })};
@@ -108,6 +109,6 @@ let disconnect = function() {
 module.exports = {    
   connect: connect,
   light_control: light_control,
-  radar_get: radar_get,
+  radar_data_subscribe: radar_data_subscribe,
   disconnect: disconnect,
 }

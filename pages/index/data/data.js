@@ -33,24 +33,28 @@ Component({
     // 在组件实例进入页面节点树时执行
     attached: function() {
       const app = getApp();
+      mqtt_connect.radar_data_subscribe();
       setInterval(() => {
         if(this.data.status != app.globalData.payload)
         {
           this.data.status = app.globalData.payload;
-          if(this.data.status == 1){
+          if(this.data.status == 0){
             this.setData({ color: "#ff0000" });
-            this.setData({ state: "活动状态" });
+            this.setData({ state: "无活动" });
           }
-          else if (this.data.status == 0){
-            this.setData({ state:"静止状态"});
+          else if(this.data.status == 1){
+            this.setData({ color: "#ff0000" });
+            this.setData({ state: "运动目标" });
+          }
+          else if (this.data.status == 2){
             this.setData({ color: "#00ff00" });
+            this.setData({ state:"静止目标"});
           }
         }
-      }, 1000);
+      }, 100);
     },
     // 在组件实例被从页面节点树移除时执行
     detached: function() {
-      
     },
   },
 
