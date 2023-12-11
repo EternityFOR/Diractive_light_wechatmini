@@ -1,9 +1,5 @@
 {
   "description": "项目配置文件",
-  "packOptions": {
-    "ignore": [],
-    "include": []
-  },
   "setting": {
     "urlCheck": true,
     "es6": true,
@@ -23,8 +19,6 @@
     "uploadWithSourceMap": true,
     "compileHotReLoad": false,
     "useMultiFrameRuntime": true,
-    "useApiHook": true,
-    "useApiHostProcess": true,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
@@ -44,9 +38,6 @@
     "condition": false
   },
   "compileType": "miniprogram",
-  "libVersion": "2.30.0",
-  "appid": "wxe82c6dc72c399a1d",
-  "projectname": "Moonlight",
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "condition": {
@@ -70,5 +61,10 @@
   "editorSetting": {
     "tabIndent": "insertSpaces",
     "tabSize": 2
-  }
+  },
+  "packOptions": {
+    "ignore": [],
+    "include": []
+  },
+  "appid": "wxe82c6dc72c399a1d"
 }

@@ -50,6 +50,10 @@ Component({
             this.setData({ color: "#00ff00" });
             this.setData({ state:"静止目标"});
           }
+          else if (this.data.status == 3){
+            this.setData({ color: "#ff9600" });
+            this.setData({ state:"设备已连接"});
+          }
         }
       }, 100);
     },
